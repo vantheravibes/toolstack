@@ -44,7 +44,13 @@
     topRated: false
   };
 
-  let savedToolIds = new Set(JSON.parse(localStorage.getItem("toolstack_favs") || "[]"));
+  let savedToolIds = new Set();
+  try {
+    const parsedFavs = JSON.parse(localStorage.getItem("toolstack_favs") || "[]");
+    if (Array.isArray(parsedFavs)) savedToolIds = new Set(parsedFavs);
+  } catch (e) {
+    savedToolIds = new Set();
+  }
   let compareToolIds = new Set();
   let currentInspectedToolId = null;
   let searchDebounceTimer = null;
@@ -340,41 +346,40 @@
       const score = t._score;
 
       // 1. Category / Favorites Filter
-      let inCat = false;
+      let isVisible = false;
       if (activeCat === "all") {
-        inCat = true;
+        isVisible = true;
       } else if (activeCat === "favorites") {
-        inCat = savedToolIds.has(id);
+        isVisible = savedToolIds.has(id);
       } else {
-        inCat = t.cat === activeCat;
+        isVisible = t.cat === activeCat;
       }
 
       // 2. Feature Toggles
-      if (inCat) {
-        if (activeToggles.noSignup && !t.noSignup) inCat = false;
-        if (activeToggles.privacy && !t.privacy) inCat = false;
-        if (activeToggles.adFree && t.ads !== "none") inCat = false;
-        if (activeToggles.topRated && score < 8) inCat = false;
+      if (isVisible) {
+        if (activeToggles.noSignup && !t.noSignup) isVisible = false;
+        if (activeToggles.privacy && !t.privacy) isVisible = false;
+        if (activeToggles.adFree && t.ads !== "none") isVisible = false;
+        if (activeToggles.topRated && score < 8) isVisible = false;
       }
 
-      card.classList.toggle("hidden", !inCat);
-
-      if (!inCat) {
-        card.classList.remove("hit", "dim");
-        return;
-      }
-
-      visibleCount++;
-
-      // 3. Search Query (Multi-word intelligent matching)
-      if (query) {
+      // 3. Search Query (Filter & Hide non-matching tools directly)
+      if (isVisible && query) {
         const qWords = query.split(/\s+/).filter(Boolean);
         const isMatch = qWords.every((word) => t._haystack.includes(word));
-        card.classList.toggle("hit", isMatch);
-        card.classList.toggle("dim", !isMatch);
-        if (isMatch) matchCount++;
-      } else {
-        card.classList.remove("hit", "dim");
+        if (!isMatch) {
+          isVisible = false;
+        } else {
+          matchCount++;
+        }
+      }
+
+      // Completely hide non-matching tools (no greyed out cards taking up space)
+      card.classList.toggle("hidden", !isVisible);
+      card.classList.remove("hit", "dim");
+
+      if (isVisible) {
+        visibleCount++;
       }
 
       // Sync button states via cached properties
@@ -454,9 +459,10 @@
     if (activeCat === "favorites") catName = "saved favorites";
     else if (activeCat !== "all") catName = catById[activeCat] ? catById[activeCat].name : activeCat;
 
+    const finalCount = query ? matchCount : visibleCount;
     resultCount.textContent = query
-      ? `${matchCount} match${matchCount === 1 ? "" : "es"} for "${query}" in ${catName}`
-      : `${visibleCount} tool${visibleCount === 1 ? "" : "s"} / ${catName}`;
+      ? `${finalCount} match${finalCount === 1 ? "" : "es"} for "${query}" in ${catName}`
+      : `${finalCount} tool${finalCount === 1 ? "" : "s"} / ${catName}`;
 
     // Update Chips & Toolbar UI
     chipsEl.querySelectorAll(".chip").forEach((chip) => {
@@ -492,6 +498,9 @@
     query = searchInput.value.trim().toLowerCase();
     searchClearBtn.hidden = query.length === 0;
     applyState();
+    if (query) {
+      scrollToGrid();
+    }
   }
 
   /* ---------- Toolbar Filters & Sort ---------- */
@@ -817,6 +826,18 @@
     applyState();
   });
 
+  /* ---------- Scroll Progress Bar ---------- */
+  const progressBar = document.getElementById("scroll-progress");
+  function updateScrollProgress() {
+    if (!progressBar) return;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    progressBar.style.width = Math.min(100, Math.max(0, progress)) + "%";
+  }
+
+  window.addEventListener("scroll", updateScrollProgress, { passive: true });
+
   /* ---------- Initialization ---------- */
   renderChips();
   renderCards();
@@ -824,5 +845,6 @@
   updateFavUI();
   updateCompareUI();
   applyState();
+  updateScrollProgress();
 
 })();
