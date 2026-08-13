@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toolstack — Which tool do I use?</title>
+  <meta name="description" content="Toolstack curates and scores the best free online tools — PDF, image, audio, video, converters, developer utilities and more. A browsable, searchable reference hub." />
+  <meta name="theme-color" content="#eef0ec" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232038c8' stroke-width='2.5'%3E%3Cpath d='M4 6h16M4 12h16M4 18h10'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Meta strip -->
+  <div class="metastrip" aria-hidden="true">
+    <span>TOOLSTACK ARCHIVE</span>
+    <span class="metastrip-mid">REF: TS-2026-001</span>
+    <span class="metastrip-mid">MODE: STATIC // NO BACKEND</span>
+    <span id="meta-count">INDEX: — TOOLS</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      </span>
+      Toolstack
+    </a>
+
+    <form class="search" id="search-form" role="search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+      <input id="search-input" type="search" placeholder="Search tools, tags, descriptions…" aria-label="Search tools" autocomplete="off" />
+      <kbd class="search-shortcut" title="Press / or Ctrl+K to search">/</kbd>
+      <button type="button" id="search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+
+    <div class="header-actions">
+      <button type="button" id="theme-toggle" class="hdr-btn" aria-label="Toggle theme mode" title="Toggle Light / Dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <a href="https://ko-fi.com/R3X123880A" target="_blank" rel="noopener noreferrer" class="hdr-btn" title="Support Toolstack on Ko-fi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+          <line x1="6" y1="2" x2="6" y2="4"/>
+          <line x1="10" y1="2" x2="10" y2="4"/>
+          <line x1="14" y1="2" x2="14" y2="4"/>
+        </svg>
+        <span>Buy Me a Coffee</span>
+      </a>
+
+      <button type="button" id="open-compare" class="hdr-btn hdr-btn-outline" title="Compare selected tools" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+        <span>Compare <b id="compare-badge">0</b></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Main Navigation">
+      <a href="#directory">Directory</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="hero-kicker">A reference hub for the free web · Vol. 02</p>
+      <h1 class="hero-title">Which tool<br />do I use?</h1>
+      <p class="hero-sub">Toolstack curates and scores the best free online tools &mdash; converters, editors, generators, developer utilities &amp; AI tools &mdash; so you can skip the ad-swamps and go straight to what works.</p>
+      <dl class="hero-stats">
+        <div><dt>Tools indexed</dt><dd id="stat-tools">—</dd></div>
+        <div><dt>Categories</dt><dd id="stat-cats">—</dd></div>
+        <div><dt>Scoring criteria</dt><dd>5</dd></div>
+        <div><dt>Backend required</dt><dd>0</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Directory -->
+  <main class="directory" id="directory">
+    <div class="directory-head">
+      <div>
+        <h2 class="section-label">// Directory Index</h2>
+        <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- Advanced Filter & Sort Toolbar -->
+      <div class="toolbar" id="toolbar">
+        <div class="toggles-group" role="group" aria-label="Quick feature filters">
+          <button type="button" class="toggle-btn" data-toggle="noSignup" title="Usable without creating an account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>No Signup</span>
+          </button>
+          <button type="button" class="toggle-btn" data-toggle="privacy" title="100% In-browser or local client processing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Local / Private</span>
+          </button>
+          <button type="button" class="toggle-btn" data-toggle="adFree" title="Zero heavy ad banners">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+            <span>Ad-Free</span>
+          </button>
+          <button type="button" class="toggle-btn" data-toggle="topRated" title="Toolstack score 8 out of 10 or higher">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Score 8+</span>
+          </button>
+        </div>
+
+        <div class="toolbar-controls">
+          <button type="button" class="chip chip-fav" id="chip-fav" data-cat="favorites" title="Show saved favorites">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Saved Tools</span>
+            <span class="chip-n" id="fav-count">0</span>
+          </button>
+
+          <div class="select-wrapper">
+            <label for="sort-select" class="sr-only">Sort Tools</label>
+            <select id="sort-select" class="sort-select">
+              <option value="score-desc">Sort: Highest Score</option>
+              <option value="name-asc">Sort: Name (A – Z)</option>
+              <option value="cat-asc">Sort: Category</option>
+            </select>
+          </div>
+
+          <button type="button" id="reset-filters" class="reset-btn" hidden title="Reset all active search and filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Chips -->
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+
+    <!-- Tool Cards Grid -->
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <h2 class="section-label">// About</h2>
+      <div class="about-cols">
+        <div class="about-text">
+          <h3 class="about-title">A map for the free tool jungle.</h3>
+          <p>Toolstack exists because finding a decent free online tool usually means wading through SEO spam, dark-pattern paywalls and ad-choked converters. This site is a hand-curated index of tools that actually work &mdash; each one scored on whether it&apos;s truly free, requires signup, respects your privacy, drowns you in ads, and how easy it is to use.</p>
+          <p>It&apos;s a fully static site: no backend, no database, no tracking. All tool data lives in one local file, so the directory is easy to extend, audit, and bookmark.</p>
+        </div>
+        <div class="about-side">
+          <div class="about-meta">
+            <span class="about-meta-label">Maintained by</span>
+            <span class="about-meta-value">vantheravibes</span>
+          </div>
+          <a class="gh-btn" href="https://github.com/vantheravibes" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.16c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            github.com/vantheravibes
+          </a>
+          <a class="kofi-btn" href="https://ko-fi.com/R3X123880A" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="2" x2="6" y2="4"/>
+              <line x1="10" y1="2" x2="10" y2="4"/>
+              <line x1="14" y1="2" x2="14" y2="4"/>
+            </svg>
+            <span>Buy Me a Coffee</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>Toolstack &mdash; static, honest, ad-free.</span>
+    <span class="footer-mono">HTML + CSS + JS // NO BUILD STEP</span>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal 1: Score Inspector -->
+  <div class="modal" id="modal-score" aria-hidden="true" role="dialog" aria-labelledby="modal-score-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-box modal-lg">
+      <header class="modal-header">
+        <div>
+          <span class="modal-kicker" id="score-modal-cat">Category</span>
+          <h2 class="modal-title" id="modal-score-title">Tool Inspector</h2>
+        </div>
+        <div class="modal-header-actions">
+          <div class="score-badge-lg" id="score-modal-badge">
+            <span id="score-modal-val">0</span><small>/10</small>
+          </div>
+          <button type="button" class="modal-close" data-close-modal aria-label="Close modal">&times;</button>
+        </div>
+      </header>
+
+      <div class="modal-body" id="score-modal-body">
+        <!-- Content rendered via app.js -->
+      </div>
+
+      <footer class="modal-footer">
+        <button type="button" id="score-modal-fav" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>Save to Favorites</span>
+        </button>
+        <button type="button" id="score-modal-compare" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+          <span>Add to Compare</span>
+        </button>
+        <a id="score-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span>Visit Tool</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal 2: Tool Comparison Matrix -->
+  <div class="modal" id="modal-compare" aria-hidden="true" role="dialog" aria-labelledby="modal-compare-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-box modal-xl">
+      <header class="modal-header">
+        <div>
+          <span class="modal-kicker">Side-by-side Matrix</span>
+          <h2 class="modal-title" id="modal-compare-title">Compare Tools</h2>
+        </div>
+        <div class="modal-header-actions">
+          <button type="button" id="clear-compare-btn" class="btn btn-sm btn-outline">Clear All</button>
+          <button type="button" class="modal-close" data-close-modal aria-label="Close modal">&times;</button>
+        </div>
+      </header>
+
+      <div class="modal-body">
+        <div class="compare-table-wrapper" id="compare-table-container">
+          <!-- Rendered via app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
