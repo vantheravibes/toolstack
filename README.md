@@ -4,7 +4,7 @@
 
 **A reference hub for the free web — Which tool do I use?**
 
-[![Live Website](https://img.shields.io/badge/Live%20Demo-Toolstack-2038c8?style=for-the-badge&logo=githubpages&logoColor=white)](https://vantheravibes.github.io/toolstack/)
+[![Live Website](https://img.shields.io/badge/Live%20Website-Toolstack-2038c8?style=for-the-badge&logo=githubpages&logoColor=white)](https://vantheravibes.github.io/toolstack/)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20Me%20a%20Coffee-ff5e5b?style=for-the-badge&logo=kofi&logoColor=white)](https://ko-fi.com/R3X123880A)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](LICENSE)
 [![Zero Build Step](https://img.shields.io/badge/Build%20Step-Zero%20%2F%20Pure%20Static-10b981?style=for-the-badge)](https://vantheravibes.github.io/toolstack/)
