@@ -976,25 +976,66 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.55rem 1rem;
+  height: 2.375rem;
+  box-sizing: border-box;
   border: 1px solid var(--line);
   background: var(--panel);
   color: var(--ink);
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
+  white-space: nowrap;
   transition: all 0.15s ease;
 }
-.btn svg { width: 0.9rem; height: 0.9rem; }
-.btn-sm { padding: 0.35rem 0.65rem; font-size: 0.6875rem; }
+.btn svg { width: 0.95rem; height: 0.95rem; flex-shrink: 0; }
+.btn span { white-space: nowrap; }
+.btn-sm { padding: 0.35rem 0.65rem; height: 1.875rem; font-size: 0.6875rem; }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn-primary:hover { background: color-mix(in srgb, var(--accent) 85%, #000); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 640px) {
+  .modal {
+    padding: 0.75rem;
+  }
+  .modal-box {
+    max-height: 94vh;
+  }
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+  .modal-body {
+    padding: 1.25rem 1rem;
+  }
+  .modal-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  .modal-footer #score-modal-link {
+    grid-column: 1 / -1;
+    order: -1;
+    height: 2.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    width: 100%;
+  }
+  .modal-footer #score-modal-fav,
+  .modal-footer #score-modal-compare {
+    width: 100%;
+    height: 2.5rem;
+    font-size: 0.6875rem;
+    padding: 0.4rem 0.5rem;
+    letter-spacing: 0.03em;
+  }
+}
 
 /* ---------- Score Inspector Breakdown Layout ---------- */
 .score-badge-lg {
